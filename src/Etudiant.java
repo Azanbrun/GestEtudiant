@@ -1,6 +1,10 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Etudiant {
     private String matricule,nom,prenom,sexe;
     private int age;
+    private ArrayList<Integer> notes ;
 
     public Etudiant(String v_matricule, String v_nom, String v_prenom, String v_sexe, int v_age){
         this.matricule=v_matricule;
@@ -8,9 +12,29 @@ public class Etudiant {
         this.prenom=v_prenom;
         this.sexe=v_sexe;
         this.age=v_age;
+        this.notes=new ArrayList<>();
+
     }
     
-    public String getMatricule(){
+    public ArrayList<Integer> getNotes(){
+        return notes;
+    }
+    public void ajouterNote(int note){
+        notes.add(note);
+    }
+
+    public double calculerMoyenne(){
+        if (notes.isEmpty()) {
+            return 0.0;
+        }
+        int somme=0;
+        for(int note: notes){
+            somme+=note;
+        }
+        return (double) somme/notes.size();
+    }
+
+   public String getMatricule(){
         return matricule;
     }
 
@@ -45,6 +69,8 @@ public class Etudiant {
     
     @Override
     public String toString(){
-        return "Etudiant[Matricule: "+matricule+" -Nom: "+nom+" -Prenom: "+prenom+" -Sexe: "+sexe+" -Age: "+age+"]";        
+        return "Etudiant[Matricule: "+matricule+" -Nom: "+nom+" -Prenom: "+prenom+" -Sexe: "+sexe+" -Age: "+age+"-Notes: "+notes+"-Moyenne: "+calculerMoyenne()+"]";        
     }
+
+
 }
