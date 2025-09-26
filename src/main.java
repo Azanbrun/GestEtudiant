@@ -41,9 +41,13 @@ public class main
         System.out.println(E5.getNom()+" "+E5.getPrenom()+": "+E5.calculerMoyenne());
 
         //Afficher la liste des étudiants
-        System.out.println("Listes des Etudiant");
+        System.out.println("Listes des Etudiant et leur moyenne:");
         service.afficherEtudiant();
 
+        //Suavegarde et afficher la liste des étudiants dans un fichier txte
+
+        service.sauvegarderEtudiant("Etudiants.txt");
+        service.lire_contenu("Etudiants.txt");
         //Supprimer un étudiant par son matricule
         System.out.println("Suppression de l'étudiant S001");
         service.SupprimerEtudiant("S001");

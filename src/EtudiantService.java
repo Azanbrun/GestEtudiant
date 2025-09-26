@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class EtudiantService {
@@ -46,6 +51,34 @@ public class EtudiantService {
             }
         }
         return resultat;
+    }
+
+    //Sauvegarder dans un fichier texte
+
+    public void sauvegarderEtudiant(String nomFichier){
+        try (BufferedWriter writer=new BufferedWriter(new FileWriter(nomFichier))) {
+            for (Etudiant e : listeEtudiants) {
+                writer.write(e.toString());
+                writer.newLine();
+            }
+            System.out.println("Sauvegarde réussie dans"+nomFichier);
+        } catch (IOException ex) {
+            System.out.println("erreur de la sauvegarde"+ex.getMessage());
+        }
+    }
+
+    //Lire un texte et afficher le contenu
+
+    public void lire_contenu(String nomFichier){
+        try(BufferedReader bReader=new BufferedReader(new FileReader(nomFichier))) {
+            String ligne;
+            System.out.println("===Contenu du fichier"+nomFichier);
+            while ((ligne=bReader.readLine())!=null) {
+                System.out.println(ligne);
+            }
+        } catch (IOException ex) {
+            System.out.println("Erreur de lecture"+ex.getMessage());
+        }
     }
     
 }
