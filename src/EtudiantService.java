@@ -57,12 +57,16 @@ public class EtudiantService {
 
     public void sauvegarderEtudiant(String nomFichier){
         try (BufferedWriter writer=new BufferedWriter(new FileWriter(nomFichier))) {
+            writer.write("Matricule;Nom;Prenoms;Sexe;Age;Notes;Moyenne");
+            writer.newLine();
             for (Etudiant e : listeEtudiants) {
                 String ligne=e.getMatricule()+";"+
                 e.getNom()+";"+
                 e.getPrenom()+";"+
                 e.getsexe()+";"+
                 e.getAge()+";"+
+                String.join(",",e.getNotes().stream()
+                .map(Object::toString).toArray(String[]::new))+";"+
                 e.calculerMoyenne();
                 writer.write(ligne);
                 writer.newLine();
