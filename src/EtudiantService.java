@@ -53,17 +53,23 @@ public class EtudiantService {
         return resultat;
     }
 
-    //Sauvegarder dans un fichier texte
+    //Sauvegarder dans un fichier texte de type csv
 
     public void sauvegarderEtudiant(String nomFichier){
         try (BufferedWriter writer=new BufferedWriter(new FileWriter(nomFichier))) {
             for (Etudiant e : listeEtudiants) {
-                writer.write(e.toString());
+                String ligne=e.getMatricule()+";"+
+                e.getNom()+";"+
+                e.getPrenom()+";"+
+                e.getsexe()+";"+
+                e.getAge()+";"+
+                e.calculerMoyenne();
+                writer.write(ligne);
                 writer.newLine();
             }
-            System.out.println("Sauvegarde réussie dans"+nomFichier);
+            System.out.println("Sauvegarde réussie dans "+nomFichier);
         } catch (IOException ex) {
-            System.out.println("erreur de la sauvegarde"+ex.getMessage());
+            System.out.println("erreur de la sauvegarde "+ex.getMessage());
         }
     }
 

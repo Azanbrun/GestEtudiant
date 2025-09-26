@@ -1,0 +1,5 @@
+Etudiant[Matricule: S001 -Nom: Avossou -Prenom: Michel -Sexe: Masculin -Age: 25-Notes: [15, 18, 12]-Moyenne: 15.0]
+Etudiant[Matricule: S005 -Nom: Medenou -Prenom: Micheline -Sexe: Féminin -Age: 20-Notes: [14, 16]-Moyenne: 15.0]
+Etudiant[Matricule: S008 -Nom: Azin -Prenom: Alain -Sexe: Masculin -Age: 19-Notes: [10, 13, 9]-Moyenne: 10.666666666666666]
+Etudiant[Matricule: S007 -Nom: Azin -Prenom: Philomène -Sexe: Féminin -Age: 30-Notes: [19, 17]-Moyenne: 18.0]
+Etudiant[Matricule: S002 -Nom: Dansou -Prenom: Alain -Sexe: Masculin -Age: 23-Notes: [11, 15, 14]-Moyenne: 13.333333333333334]

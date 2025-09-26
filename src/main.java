@@ -44,10 +44,10 @@ public class main
         System.out.println("Listes des Etudiant et leur moyenne:");
         service.afficherEtudiant();
 
-        //Suavegarde et afficher la liste des étudiants dans un fichier txte
+        //Suavegarde et afficher la liste des étudiants dans un fichier txte de type scv
 
-        service.sauvegarderEtudiant("Etudiants.txt");
-        service.lire_contenu("Etudiants.txt");
+        service.sauvegarderEtudiant("Etudiants.scv");
+        service.lire_contenu("Etudiants.scv");
         //Supprimer un étudiant par son matricule
         System.out.println("Suppression de l'étudiant S001");
         service.SupprimerEtudiant("S001");
