@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EtudiantService {
 
@@ -30,7 +31,9 @@ public class EtudiantService {
             System.out.println(e);
         }
     }
-
+    public List<Etudiant> getListeEtudiants(){
+        return listeEtudiants;
+    }
     //Rechercher par le numero matricule
 
     public Etudiant rechEtudiantParMatricule(String matricule){
@@ -74,7 +77,7 @@ public class EtudiantService {
             for (int i = 1;i<=maxNotes;i++) {
                 writer.write(";Note"+i);
             }
-            writer.write(";Moyenne;Mention");
+            writer.write(";Nombres_Notes;Sommes_Notes;Moyenne;Mention");
             writer.newLine();
 
             //Ecriture de chaque etudiant
@@ -98,8 +101,13 @@ public class EtudiantService {
             for (int i=0;i<diff;i++) {
                 ligne.append(";");
             }
-            ligne.append(String.format("%.2f",e.calculerMoyenne()))
+            ligne.append(e.getNotes().size());
+            int somme=e.getNotes().stream().mapToInt(Integer::intValue).sum();
+            ligne.append(";").append(somme).append(";")
+            .append(String.format("%.2f",e.calculerMoyenne()))
             .append(";").append(e.getMention());
+
+
             writer.write(ligne.toString());
             writer.newLine();
         

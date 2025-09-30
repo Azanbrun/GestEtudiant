@@ -1,11 +1,95 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class main
 {
      public static void main(String[] args) {
 
         EtudiantService service= new EtudiantService();
-        Etudiant E1=new Etudiant("S001", "Avossou", "Michel", "Masculin", 25);
+        Scanner scanner= new Scanner(System.in);
+
+        int choix;
+        do {
+            System.out.println("---MENU PRINCIPAL---");
+            System.out.println("1. Ajouter un étudiant");
+            System.out.println("2. Ajouter des notes à un étudiant");
+            System.out.println("3. Afficher la liste des étudiants");
+            System.out.println("4. Sauvegarder dans un fichier CSV");
+            System.out.println("0. Quitter!");
+            System.out.println("Votre choix: ");
+
+            choix=scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choix) {
+                case 1:
+                    System.out.println("Matricule: ");
+                    String matricule=scanner.nextLine();
+
+                    System.out.println("Nom: ");
+                    String nom=scanner.nextLine();
+
+                    System.out.println("Prenom: ");
+                    String prenom=scanner.nextLine();
+
+                    System.out.println("Sexe: ");
+                    String sexe=scanner.nextLine();
+
+                    System.out.println("Age: ");
+                    int age=scanner.nextInt();
+                    scanner.nextLine();
+
+                    Etudiant e= new Etudiant(matricule, nom, prenom, sexe, age);
+                    service.AjouterEtudiant(e);
+                    System.out.println("Etudiant ajouté avec succès!");
+                    
+                    break;
+                case 2:
+                    System.out.println("Matricule de l'étudiant? ");
+                    String mat=scanner.nextLine();
+                    Etudiant etu=service.rechEtudiantParMatricule(mat);
+
+                    if (etu != null) {
+                        System.out.println("Combien de notes à ajouter?");
+                        int nbrNotes=scanner.nextInt();
+
+                        for (int i = 0; i < nbrNotes; i++) {
+                        System.out.println("Note "+(i+1)+" : ");
+                        int note=scanner.nextInt();
+                        etu.ajouterNote(note);
+                        }
+                        System.out.println("Notes ajoutées avec succès!");
+                        
+                    } else {
+                        System.out.println("Etudiant introuvable!");
+                    }
+                    scanner.nextLine();
+                    break;
+                case 3:
+                        if (service.getListeEtudiants().isEmpty()) {
+                            System.out.println("Aucun étudiant enrégistré");
+                        } else {
+                           service.getListeEtudiants().forEach(stud->
+                           System.out.println(stud+
+                           "-Moyenne: "+String.format("%.2f", stud.calculerMoyenne())+
+                           "-Mention: "+stud.getMention())); 
+                        }
+                    break;
+                case 4:
+                        System.out.print("Nom du fichier de sauvegarde: ");
+                        String fichier=scanner.nextLine();
+                        service.sauvegarderEtudiant(fichier);
+                        break;
+                case 0:
+                        System.out.println("Au Revoir!");
+                        break;
+
+                default:
+                   System.out.println("Choix invalid!");
+            }
+        } while (choix !=0);
+        scanner.close();
+        /*Etudiant E1=new Etudiant("S001", "Avossou", "Michel", "Masculin", 25);
         Etudiant E2=new Etudiant("S005", "Medenou", "Micheline", "Féminin", 20);
         Etudiant E3=new Etudiant("S008", "Azin", "Alain", "Masculin", 19);
         Etudiant E4=new Etudiant("S007", "Azin", "Philomène", "Féminin", 30);
@@ -84,7 +168,7 @@ public class main
             for(Etudiant et: rEtudiants){
                 System.out.println(et);
             }
-        }
+        }*/
 
     }
 }
