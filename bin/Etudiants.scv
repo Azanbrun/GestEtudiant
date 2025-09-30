@@ -1,5 +1,11 @@
-S001;Avossou;Michel;Masculin;25;15.0
-S005;Medenou;Micheline;Féminin;20;15.0
-S008;Azin;Alain;Masculin;19;10.666666666666666
-S007;Azin;Philomène;Féminin;30;18.0
-S002;Dansou;Alain;Masculin;23;13.333333333333334
+Matricule;Nom;Prenoms;Sexe;Age;Note1;Note2;Note3;Moyenne;Mention
+S001;Avossou;Michel;Masculin;25;15;18;12;15,00;Bien
+S005;Medenou;Micheline;Féminin;20;14;16;;15,00;Bien
+S008;Azin;Alain;Masculin;19;10;13;9;10,67;Passable
+S007;Azin;Philomène;Féminin;30;19;17;;18,00;Très Bien
+S003;Dansou;Alain;Masculin;23;11;15;14;13,33;Assez Bien
+S0010;Kouhontondé;Gilbert;Masculin;29;;;;0,00;Echec
+S006;Assogba;Wilfred;Masculin;40;;;;0,00;Echec
+S0011;Yèhouénou;Fawaz;Masculin;17;;;;0,00;Echec
+S0022;Klotoé;Huberte;Féminin;38;;;;0,00;Echec
+S009;Attolou;Yasmine;Féminin;35;;;;0,00;Echec

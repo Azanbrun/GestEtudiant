@@ -9,13 +9,25 @@ public class main
         Etudiant E2=new Etudiant("S005", "Medenou", "Micheline", "Féminin", 20);
         Etudiant E3=new Etudiant("S008", "Azin", "Alain", "Masculin", 19);
         Etudiant E4=new Etudiant("S007", "Azin", "Philomène", "Féminin", 30);
-        Etudiant E5=new Etudiant("S002", "Dansou", "Alain", "Masculin", 23);
+        Etudiant E5=new Etudiant("S003", "Dansou", "Alain", "Masculin", 23);
+        Etudiant E6=new Etudiant("S0010", "Kouhontondé", "Gilbert", "Masculin", 29);
+        Etudiant E7=new Etudiant("S0011", "Yèhouénou", "Fawaz", "Masculin", 17);
+        Etudiant E8=new Etudiant("S0022", "Klotoé", "Huberte", "Féminin", 38);
+        Etudiant E9=new Etudiant("S009", "Attolou", "Yasmine", "Féminin", 35);
+        Etudiant E10=new Etudiant("S006", "Assogba", "Wilfred", "Masculin", 40);
+
+
         
         service.AjouterEtudiant(E1);
         service.AjouterEtudiant(E2);
         service.AjouterEtudiant(E3);
         service.AjouterEtudiant(E4);
         service.AjouterEtudiant(E5);
+        service.AjouterEtudiant(E6);
+        service.AjouterEtudiant(E10);
+        service.AjouterEtudiant(E7);
+        service.AjouterEtudiant(E8);
+        service.AjouterEtudiant(E9);
 
         //Ajouter des notes aux étudiants
         E1.ajouterNote(15);

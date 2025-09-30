@@ -66,6 +66,23 @@ public class Etudiant {
     public void setAge( int v_age){
         this.age=v_age;
     }
+
+    public String getMention(){
+        double m= calculerMoyenne();
+
+        double tresBien=Double.parseDouble(ConfigManager.getProperty("mention.tresbien"));
+        double bien=Double.parseDouble(ConfigManager.getProperty("mention.bien"));
+        double assezBien=Double.parseDouble(ConfigManager.getProperty("mention.assezbien"));
+        double passable=Double.parseDouble(ConfigManager.getProperty("mention.passable"));
+
+
+        if (m>= tresBien) return "Très Bien";
+        else if(m>=bien) return "Bien";
+        else if(m>=assezBien) return "Assez Bien";
+        else if(m>=passable) return "Passable";
+        else return"Echec";
+
+    }
     
     @Override
     public String toString(){

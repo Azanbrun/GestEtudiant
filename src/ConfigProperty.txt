@@ -1,4 +1,0 @@
-mention.tresbien=17
-mention.bien=15
-mention.assezbien=13
-mention.passable=9

@@ -1,5 +1,6 @@
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigManager {
@@ -8,9 +9,13 @@ public class ConfigManager {
         try {
             //Charger le fichier config
 
-            FileInputStream fis= new FileInputStream("ConfigProperty");
-            properties.load(fis);
-            fis.close();
+            InputStream input = ConfigManager.class.getClassLoader().getResourceAsStream("Config.properties");
+            if (input == null) {
+            System.out.println("⚠️ Fichier config.properties introuvable !");
+            } else {
+                properties.load(input);
+            }
+
         } catch (IOException e) {
             System.out.println("Erreur de chargement du fichier config:"+e.getMessage());
 

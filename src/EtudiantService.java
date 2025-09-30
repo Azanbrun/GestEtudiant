@@ -57,21 +57,56 @@ public class EtudiantService {
 
     public void sauvegarderEtudiant(String nomFichier){
         try (BufferedWriter writer=new BufferedWriter(new FileWriter(nomFichier))) {
-            writer.write("Matricule;Nom;Prenoms;Sexe;Age;Notes;Moyenne");
-            writer.newLine();
+
+            //Ecrire des en-tetes fixes
+            writer.write("Matricule;Nom;Prenoms;Sexe;Age");
+
+            //déterminer le nombre de notes
+            int maxNotes=0;
             for (Etudiant e : listeEtudiants) {
-                String ligne=e.getMatricule()+";"+
-                e.getNom()+";"+
-                e.getPrenom()+";"+
-                e.getsexe()+";"+
-                e.getAge()+";"+
-                String.join(",",e.getNotes().stream()
-                .map(Object::toString).toArray(String[]::new))+";"+
-                e.calculerMoyenne();
-                writer.write(ligne);
-                writer.newLine();
+               if(e.getNotes().size()>maxNotes){
+                maxNotes=e.getNotes().size();
+               }
             }
-            System.out.println("Sauvegarde réussie dans "+nomFichier);
+
+            //Ajout des en-tetes dynamiques
+
+            for (int i = 1;i<=maxNotes;i++) {
+                writer.write(";Note"+i);
+            }
+            writer.write(";Moyenne;Mention");
+            writer.newLine();
+
+            //Ecriture de chaque etudiant
+
+            for (Etudiant e : listeEtudiants) {
+                StringBuilder ligne= new StringBuilder();
+                ligne.append(e.getMatricule()).append(";")
+                .append(e.getNom()).append(";")
+                .append(e.getPrenom()).append(";")
+                .append(e.getsexe()).append(";")
+                .append(e.getAge()).append(";");
+                
+            //Ajouter les notes    
+                for (Integer note : e.getNotes()) {
+                    ligne.append(note).append(";");
+                }
+               
+
+            //Compl"tez avec des colonnes vides si etudiant à moins de notes    
+            int diff=maxNotes - e.getNotes().size();
+            for (int i=0;i<diff;i++) {
+                ligne.append(";");
+            }
+            ligne.append(String.format("%.2f",e.calculerMoyenne()))
+            .append(";").append(e.getMention());
+            writer.write(ligne.toString());
+            writer.newLine();
+        
+        }
+
+        System.out.println("Sauvegarde réussie dans "+nomFichier);
+
         } catch (IOException ex) {
             System.out.println("erreur de la sauvegarde "+ex.getMessage());
         }
@@ -82,7 +117,7 @@ public class EtudiantService {
     public void lire_contenu(String nomFichier){
         try(BufferedReader bReader=new BufferedReader(new FileReader(nomFichier))) {
             String ligne;
-            System.out.println("===Contenu du fichier"+nomFichier);
+            System.out.println("===Contenu du fichier "+nomFichier);
             while ((ligne=bReader.readLine())!=null) {
                 System.out.println(ligne);
             }
